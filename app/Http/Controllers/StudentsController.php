@@ -25,23 +25,30 @@ class StudentsController extends Controller
     public function __construct(Student $student)
     {
         $this->student = $student;
+
+       
     }
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of students
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $students = Student::latest()->get();
+        
 
+        //$this->getAttended($students);
+
+        
+        
         return view('students.index', compact('students'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new student.
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,7 +58,7 @@ class StudentsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created student in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,85 +66,74 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
 
-      Student::create($this->validateStudent());
+        Student::create($this->validateStudent());
 
-        
-
-       return redirect()->route('students.index')->with('info','Student Added Successfully');
-        
-
-        
-        
-            
-          
+        return redirect()->route('students.index')->with('info','Student Added Successfully');  
         
     }
 
     /**
-     * Display the specified resource.
+     * Display the student.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
     public function show(Student $student)
     {
-        //$student = Student::find($id);
 
         return view('students.show')->with(['student' => $student]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the student.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student )
     {
 
-        $student = Student::find($id);
-
-        //dd($student);
+    
         return view('students.edit')->with(['student' => $student]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the student in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
-        //dd($student);
-        $student = Student::find($id);
+    
 
-        $student->update($this->validateStudent());
-
-        
-            
-          
+        $student->update($this->validateStudent()); 
          
-          return redirect('students')->with('success','Student has been updated');
+        return redirect('students')->with('success','Student has been updated');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the student from storage.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
         
-        $student = Student::findOrFail($id);
-
         $student->delete();
 
         return redirect()->route('students.index');
 
     }
+
+    /**
+     * validate student array of values
+     *
+     * @param  request
+     * @return \Illuminate\Http\Response
+     */
 
     protected function validateStudent()
     {
@@ -151,6 +147,31 @@ class StudentsController extends Controller
             'notes' => 'required',
             'faculty' => 'required',
             'attendance' => 'required',
+            'add_lessons' => 'required'
         ]);
+    }
+
+
+     /**
+     * Convert the student object in to an array.
+     * Filter through the array and pluck out students 
+     * requiring additional lessons
+     * 
+     * @param  students
+     * @return \Illuminate\Http\Response
+     */
+    protected function getAttended($students)
+    {
+
+        $student_array = $students->toArray();
+        //dd($student_array);
+
+        $array = array_filter($student_array, function ($item) {
+            return $item['add_lessons'] == 0;
+        
+        });
+
+        dd($array);
+
     }
 }

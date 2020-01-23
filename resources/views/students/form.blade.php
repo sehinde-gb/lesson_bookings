@@ -1,10 +1,10 @@
 <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <label for="first_name">First Name:</label>
-            <input type="text" class="form-control" name="first_name" value="{{$student->first_name}}">
-          </div>
-        </div>
+  <div class="col-md-4"></div>
+    <div class="form-group col-md-4">
+        <label for="first_name">First Name:</label>
+        <input type="text" class="form-control" name="first_name" value="{{$student->first_name}}">
+    </div>
+  </div>
         <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
@@ -62,11 +62,16 @@
           </div>
         </div>
 
-        
-
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
-            <button type="submit" class="btn btn-success" style="margin-left:38px">Update Student</button>
+            <label for="add_lessons">Additional Lessons:</label>
+            <input type="text" class="form-control" name="add_lessons" value="{{$student->add_lessons}}">
           </div>
         </div>
+        
+
+        <!-- button-centre -->
+        <div class="button-centre">
+                {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary', 'data-confirm' => 'Are you sure about that?']) !!}
+            </div>

@@ -11,6 +11,8 @@
         <p>{{ \Session::get('success') }}</p>
       </div><br />
      @endif
+
+     <h1>Student Listings</h1>
     <table class="table table-striped">
     <thead>
       <tr>

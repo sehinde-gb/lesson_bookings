@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('notes')->nullable();
             $table->string('faculty')->nullable();
             $table->boolean('attendance')->nullable();
+            $table->boolean('add_lessons')->nullable();
             $table->timestamps();
         });
     }
