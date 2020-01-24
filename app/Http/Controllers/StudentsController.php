@@ -160,6 +160,7 @@ class StudentsController extends Controller
      * @param  students
      * @return \Illuminate\Http\Response
      */
+    
     protected function getAttended($students)
     {
 
@@ -179,16 +180,10 @@ class StudentsController extends Controller
           // }
         //});
 
-       
-        $changed = $students->map(function($value, $key) {
-            $value['phone'] += 1;
-            return $value;
-        });
-
-        return $changed->all();
-
-
-        //dd($results);
+        $lecturer = $students->pluck('lessons.*.lecturer')->collapse();
+        
+            
+        dd($lecturer);
         //$results;
         //$results->all();
         
