@@ -41,8 +41,8 @@ class StudentsController extends Controller
         
 
         //$this->getAttended($students);
+        $this->getAttended($students);
 
-        
         
         return view('students.index', compact('students'));
     }
@@ -163,15 +163,47 @@ class StudentsController extends Controller
     protected function getAttended($students)
     {
 
-        $student_array = $students->toArray();
-        //dd($student_array);
+        // $student_array = $students->toArray();
+        // //dd($student_array);
 
-        $array = array_filter($student_array, function ($item) {
-            return $item['add_lessons'] == 0;
+        // $array = array_filter($student_array, function ($item) {
+        //     return $item['add_lessons'] == 0;
         
+        // });
+
+        // dd($array);
+
+        $results = $students->filter(function($student, $key) {
+           if ($student['phone'] === 6) {
+               return true;
+           }
         });
 
-        dd($array);
+        dd($results);
+        //return $results;
+        //$results->all();
+        
+
+    }
+
+
+    public function getModified($students) 
+    {
+        //$student_array = $students->toArray();
+        //dd($student_array);
+
+        // foreach ($students as $student) {
+        //     $student->first_name == 'Salvatore';
+        // }
+
+        $modified = array_map(function ($student) {
+            return (array) $student;            
+
+
+        }, $students);
+
+
+        var_dump($modified);
 
     }
 }
