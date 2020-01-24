@@ -173,14 +173,23 @@ class StudentsController extends Controller
 
         // dd($array);
 
-        $results = $students->filter(function($student, $key) {
-           if ($student['phone'] === 6) {
-               return true;
-           }
+        //$results = $students->filter(function($student, $key) {
+          // if ($student['phone'] === 6) {
+            //   return true;
+          // }
+        //});
+
+       
+        $changed = $students->map(function($value, $key) {
+            $value['phone'] += 1;
+            return $value;
         });
 
-        dd($results);
-        //return $results;
+        return $changed->all();
+
+
+        //dd($results);
+        //$results;
         //$results->all();
         
 
