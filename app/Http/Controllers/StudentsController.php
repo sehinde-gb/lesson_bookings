@@ -153,52 +153,82 @@ class StudentsController extends Controller
 
 
      /**
-     * Convert the student object in to an array.
-     * Filter through the array and pluck out students 
-     * requiring additional lessons
+     * Pass the student collection and eager load the 
+     * students lecturers and collapse the results
+     * so that you dont have empty results.
      * 
      * @param  students
      * @return \Illuminate\Http\Response
      */
     
-    protected function getAttended($students)
+    protected function getLecturer($students)
     {
 
-        // $student_array = $students->toArray();
-        // //dd($student_array);
-
-        // $array = array_filter($student_array, function ($item) {
-        //     return $item['add_lessons'] == 0;
-        
-        // });
-
-        // dd($array);
-
-        //$results = $students->filter(function($student, $key) {
-          // if ($student['phone'] === 6) {
-            //   return true;
-          // }
-        //});
 
         $lecturer = $students->pluck('lessons.*.lecturer')->collapse();
         
             
         dd($lecturer);
-        //$results;
-        //$results->all();
         
+        
+    }
+
+    /**
+     * Convert the student collection in to an array.
+     * Filter through the array and pluck out 
+     * any students requiring additional lessons. 
+     * 
+     * 
+     * @param  students
+     * @return \Illuminate\Http\Response
+     */
+
+    protected function getAddedLessons($students) 
+    {
+        $student_array = $students->toArray();
+        //dd($student_array);
+
+        $array = array_filter($student_array, function ($item) {
+             return $item['add_lessons'] == 0;
+        
+        });
+
+        dd($array);
+
+    }
+
+    /**
+     * Filter through the students collection and 
+     * pluck out the student phone numbers that
+     * are equal to 6
+     * 
+     * 
+     * @param  students
+     * @return \Illuminate\Http\Response
+     */
+
+    protected function getStudentPhone($students)
+    {
+        $results = $students->filter(function($student, $key) {
+           if ($student['phone'] === 6) {
+               return true;
+           }
+        });
+
+        dd($results);
 
     }
 
 
+    /**
+     * 
+     * Send a collection of students in to an array map 
+     * and convert the collection in to an array.
+     * @param  students
+     * @return \Illuminate\Http\Response
+     */
     public function getModified($students) 
     {
-        //$student_array = $students->toArray();
-        //dd($student_array);
-
-        // foreach ($students as $student) {
-        //     $student->first_name == 'Salvatore';
-        // }
 
         $modified = array_map(function ($student) {
             return (array) $student;            
@@ -208,6 +238,30 @@ class StudentsController extends Controller
 
 
         var_dump($modified);
+
+    }
+
+
+    /**
+     * Filter through the collection of students
+     * and pluck out the student first name 
+     * that is equal to Salvatore.
+     * 
+     * 
+     * @param  students
+     * @return \Illuminate\Http\Response
+     */
+    protected function getFirstName($students)
+    {
+        $results = $students->filter(function($student, $key) {
+            if ($student->first_name === 'Salvatore') {
+                return true;
+            }
+         });
+
+         dd($results);
+
+
 
     }
 }
