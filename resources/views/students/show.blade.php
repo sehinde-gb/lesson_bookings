@@ -2,6 +2,29 @@
 
 @section('content')
 
-<h3 class="blog--title is--padded-top-40 is--white">{!! $student->first_name !!}</h3>
+
+
+
+<div id="wrapper">
+    <div id="page" class="container">
+        <div id="content">
+            <h5 class="display-4">{!! $student->title !!}</h3>
+            <h6 class="strong">{!! $student->first_name !!}</h6>
+            <h6 class="strong">{!! $student->last_name !!}</h6>
+            <p class="strong">{!! $student->address !!}</p>
+            <p>{!! $student->phone !!}</p>
+            <p>{!! $student->faculty!!}</p>
+        </div><!-- #content -->  
+    </div><!-- #page .container -->  
+</div><!-- #wrapper -->  
+
+
+
+<p>
+    @foreach ($student->lessons as $lesson)
+        <a class="btn btn-primary btn-lg active" href="{{ route('students.index', ['lesson' => $lesson->lecturer]) }}">{{ $lesson->lecturer}}</a>
+        
+    @endforeach    
+</p>
 
 @endsection

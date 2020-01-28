@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Lesson;
 use Illuminate\Http\Request;
 
 
@@ -25,8 +26,7 @@ class StudentsController extends Controller
     public function __construct(Student $student)
     {
         $this->student = $student;
-
-       
+ 
     }
 
 
@@ -37,14 +37,22 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $students = Student::latest()->get();
-        
+        if (request('lesson')) {
 
+            $students = Lesson::where('title', request('lesson'))->firstOrFail()->students;
+        
+        } else {
+
+              $students = Student::latest()->get();
+        }
+
+        //dd($students);
         //$this->getAttended($students);
-        $this->getAttended($students);
+        //$this->getAttended($students);
 
         
-        return view('students.index', compact('students'));
+        return view('students.index', ['students' => $students]);
+   
     }
 
     /**
@@ -54,7 +62,9 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('students.create', [
+            'lessons' => Lesson::all()
+        ]);
     }
 
     /**
@@ -66,7 +76,13 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
 
-        Student::create($this->validateStudent());
+        //Student::create($this->validateStudent());
+
+        $student = new Student($this->validateStudent());
+
+        $student->save();
+
+        $student->lessons()->attach(request('lessons'));
 
         return redirect()->route('students.index')->with('info','Student Added Successfully');  
         
@@ -90,11 +106,13 @@ class StudentsController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student )
+    public function edit(Student $student)
     {
-
     
-        return view('students.edit')->with(['student' => $student]);
+        return view('students.edit')->with([
+            'student' => $student,
+            'lessons' => Lesson::all()
+            ]);
     }
 
     /**
@@ -109,6 +127,8 @@ class StudentsController extends Controller
     
 
         $student->update($this->validateStudent()); 
+
+        $student->lessons()->sync(request('lessons'));
          
         return redirect('students')->with('success','Student has been updated');
     }
@@ -147,7 +167,8 @@ class StudentsController extends Controller
             'notes' => 'required',
             'faculty' => 'required',
             'attendance' => 'required',
-            'add_lessons' => 'required'
+            'add_lessons' => 'required',
+            'lessons' => 'exists:lessons,id'
         ]);
     }
 

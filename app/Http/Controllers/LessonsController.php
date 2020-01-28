@@ -46,6 +46,7 @@ class LessonsController extends Controller
 
         }
 
+        //dd($lessons);
 
         // $lessons = Lesson::latest()->get();
 
@@ -63,6 +64,7 @@ class LessonsController extends Controller
         return view('lessons.create', [
             'students' => Student::all()
         ]);
+        dd($students);
     }
 
     /**
@@ -95,7 +97,7 @@ class LessonsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the lesson.
      *
      * @param  \App\Lesson  $lesson
      * @return \Illuminate\Http\Response
@@ -109,7 +111,7 @@ class LessonsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the lesson.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Lesson  $lesson
@@ -120,7 +122,7 @@ class LessonsController extends Controller
         //dd($request);
         $lesson->update($this->validateLesson()); 
 
-        $lesson->students()->attach(request('students'));
+        $lesson->students()->sync(request('students'));
         //dd($lesson); 
         return redirect('lessons')->with('success','Lesson has been updated');
     }

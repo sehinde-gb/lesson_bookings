@@ -3,17 +3,21 @@
 @section('content')
 
 
+
+
 <div id="wrapper">
     <div id="page" class="container">
         <div id="content">
-        <h2 class="blog--title is--padded-top-40 is--white">{!! $lesson->title !!}</h3>
-        
-        </div>
-    
-    
-    </div>
-
-</div>
+            <h1 class="display-2">{!! $lesson->title !!}</h3>
+            <h1 class="display-2">{!! $lesson->body !!}</h3>
+            <h1 class="display-2">{!! $lesson->objectives !!}</h3>
+            <h2 class="display-3">{!! $lesson->prerequisites !!}</h2>
+            <h2 class="display-3">{!! $lesson->evaluation !!}</h2>
+            <h3 class="display-3">{!! $lesson->resources!!}</h3>
+            <h3 class="display-3">{!! $lesson->activity !!}</h3>
+        </div><!-- #content -->  
+    </div><!-- #page .container -->  
+</div><!-- #wrapper -->  
 
 
 

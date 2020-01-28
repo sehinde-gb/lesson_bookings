@@ -10,6 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// class cars
+// {
+// }
+
+// $car1= new cars();
+
+// $cars_serialized= serialize($car1);
+
+// echo "This is the serialized object: '$cars_serialized'";
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
