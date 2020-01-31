@@ -99,6 +99,11 @@
 
 
 <div class="form-group">
+    <checkbox></checkbox>
+
+</div>
+
+<div class="form-group">
         <label for="activity">Lessons</label>
 
        
@@ -107,7 +112,7 @@
                 name="lessons[]"
                 multiple>
             @foreach ($lessons as $lesson)
-                <option value="{{ $lesson->id }}">{{ $lesson->lecturer}}</option>
+                <option value="{{ $lesson->id }}">{{ $lesson->title}}</option>
             @endforeach    
             
             </select>

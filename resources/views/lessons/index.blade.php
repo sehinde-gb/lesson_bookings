@@ -11,7 +11,7 @@
         <p>{{ \Session::get('success') }}</p>
       </div><br />
      @endif
-     <h1>Lesson Listings</h1>
+     <h1>MU: Lesson Listings</h1>
     <table class="table table-striped">
     <thead>
       <tr>

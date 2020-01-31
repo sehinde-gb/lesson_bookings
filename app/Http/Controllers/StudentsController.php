@@ -1,18 +1,40 @@
 <?php
-
+/**
+ * This class is the StudentsController class
+ * 
+ * PHP version 7.2
+ * 
+ * @category Vendor/Project
+ * @package  Vendor/Project
+ * @author   Sehinde Raji <sehinde@outlook.com>
+ * @license  www.laravel.com Laravel
+ * @link     Install this on your machine 
+ */
 namespace App\Http\Controllers;
 
 use App\Student;
 use App\Lesson;
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentsRequest;
 
-
-
+/**
+ * This class is the StudentsController class
+ * 
+ * PHP version 7.2
+ * 
+ * @category Vendor/Project
+ * @package  Vendor/Project
+ * @author   Sehinde Raji <sehinde@outlook.com>
+ * @license  www.laravel.com Laravel
+ * @link     Install this on your machine 
+ */
 class StudentsController extends Controller
 {
 
 
     /**
+     * Student variable
+     * 
      * @var Student
      */
 
@@ -20,13 +42,12 @@ class StudentsController extends Controller
 
     /**
      * Students Controller constructor.
-     * @param Student $student
+     *
+     * @param Student $student this is the student variable
      */
-    
     public function __construct(Student $student)
     {
         $this->student = $student;
- 
     }
 
 
@@ -39,18 +60,14 @@ class StudentsController extends Controller
     {
         if (request('lesson')) {
 
-            $students = Lesson::where('title', request('lesson'))->firstOrFail()->students;
+            $students = Lesson::where('title', request('lesson'))
+                ->firstOrFail()->students;
         
         } else {
 
               $students = Student::latest()->get();
         }
 
-        //dd($students);
-        //$this->getAttended($students);
-        //$this->getAttended($students);
-
-        
         return view('students.index', ['students' => $students]);
    
     }
@@ -62,36 +79,40 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create', [
+        return view(
+            'students.create', [
             'lessons' => Lesson::all()
-        ]);
+            ]
+        );
     }
 
     /**
      * Store a newly created student in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request The request variable
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentsRequest $request)
     {
 
-        //Student::create($this->validateStudent());
 
-        $student = new Student($this->validateStudent());
+        $student = new Student($request->all());
 
         $student->save();
 
         $student->lessons()->attach(request('lessons'));
 
-        return redirect()->route('students.index')->with('info','Student Added Successfully');  
+        return redirect()->route('students.index')
+            ->with('info', 'Student Added Successfully');  
         
     }
 
     /**
      * Display the student.
      *
-     * @param  \App\Student  $student
+     * @param \App\Student $student This is the student variable
+     * 
      * @return \Illuminate\Http\Response
      */
     public function show(Student $student)
@@ -103,40 +124,45 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the student.
      *
-     * @param  \App\Student  $student
+     * @param \App\Student $student this is the student variable
+     * 
      * @return \Illuminate\Http\Response
      */
     public function edit(Student $student)
     {
     
-        return view('students.edit')->with([
+        return view('students.edit')->with(
+            [
             'student' => $student,
             'lessons' => Lesson::all()
-            ]);
+            ]
+        );
     }
 
     /**
      * Update the student in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param \Illuminate\Http\Request $request the request variable
+     * @param \App\Student             $student the student variable
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentsRequest $request, Student $student)
     {
     
 
-        $student->update($this->validateStudent()); 
+        $student->update($$request->all()); 
 
         $student->lessons()->sync(request('lessons'));
          
-        return redirect('students')->with('success','Student has been updated');
+        return redirect('students')->with('success', 'Student has been updated');
     }
 
     /**
      * Remove the student from storage.
      *
-     * @param  \App\Student  $student
+     * @param \App\Student $student the student variable
+     * 
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
@@ -148,45 +174,23 @@ class StudentsController extends Controller
 
     }
 
-    /**
-     * validate student array of values
-     *
-     * @param  request
-     * @return \Illuminate\Http\Response
-     */
-
-    protected function validateStudent()
-    {
-
-        return request()->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'title' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'notes' => 'required',
-            'faculty' => 'required',
-            'attendance' => 'required',
-            'add_lessons' => 'required',
-            'lessons' => 'exists:lessons,id'
-        ]);
-    }
+  
 
 
      /**
-     * Pass the student collection and eager load the 
-     * students lecturers and collapse the results
-     * so that you dont have empty results.
-     * 
-     * @param  students
-     * @return \Illuminate\Http\Response
-     */
-    
+      * Pass the student collection and eager load the 
+      * students lecturers and collapse the results
+      * so that you dont have empty results.
+      * 
+      * @param \App\Students $students the student variable
+      * 
+      @return \Illuminate\Http\Response
+      */
     protected function getLecturer($students)
     {
 
 
-        $lecturer = $students->pluck('lessons.*.lecturer')->collapse();
+        $lecturer = $students->pluck('lessons.*.title')->collapse();
         
             
         dd($lecturer);
@@ -198,21 +202,22 @@ class StudentsController extends Controller
      * Convert the student collection in to an array.
      * Filter through the array and pluck out 
      * any students requiring additional lessons. 
+     *
+     * @param \App\Students $students the student variable
      * 
-     * 
-     * @param  students
      * @return \Illuminate\Http\Response
      */
-
     protected function getAddedLessons($students) 
     {
         $student_array = $students->toArray();
         //dd($student_array);
 
-        $array = array_filter($student_array, function ($item) {
-             return $item['add_lessons'] == 0;
+        $array = array_filter(
+            $student_array, function ($item) {
+                return $item['add_lessons'] == 0;
         
-        });
+            }
+        );
 
         dd($array);
 
@@ -222,19 +227,20 @@ class StudentsController extends Controller
      * Filter through the students collection and 
      * pluck out the student phone numbers that
      * are equal to 6
+     *
+     * @param \App\Students $students the student variable
      * 
-     * 
-     * @param  students
      * @return \Illuminate\Http\Response
      */
-
     protected function getStudentPhone($students)
     {
-        $results = $students->filter(function($student, $key) {
-           if ($student['phone'] === 6) {
-               return true;
-           }
-        });
+        $results = $students->filter(
+            function ($student, $key) {
+                if ($student['phone'] === 6) {
+                    return true;
+                }
+            }
+        );
 
         dd($results);
 
@@ -242,20 +248,23 @@ class StudentsController extends Controller
 
 
     /**
-     * 
      * Send a collection of students in to an array map 
      * and convert the collection in to an array.
-     * @param  students
+     *
+     * @param \App\Students $students the student variable
+     * 
      * @return \Illuminate\Http\Response
      */
     public function getModified($students) 
     {
 
-        $modified = array_map(function ($student) {
-            return (array) $student;            
+        $modified = array_map(
+            function ($student) {
+                return (array) $student;            
 
 
-        }, $students);
+            }, $students
+        );
 
 
         var_dump($modified);
@@ -267,18 +276,20 @@ class StudentsController extends Controller
      * Filter through the collection of students
      * and pluck out the student first name 
      * that is equal to Salvatore.
+     *
+     * @param \App\Students $students the student variable
      * 
-     * 
-     * @param  students
      * @return \Illuminate\Http\Response
      */
     protected function getFirstName($students)
     {
-        $results = $students->filter(function($student, $key) {
-            if ($student->first_name === 'Salvatore') {
-                return true;
+        $results = $students->filter(
+            function ($student, $key) {
+                if ($student->first_name === 'Salvatore') {
+                    return true;
+                }
             }
-         });
+        );
 
          dd($results);
 

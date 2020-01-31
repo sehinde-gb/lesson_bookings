@@ -14,7 +14,7 @@
         {!! Form::model($lesson = new \App\Lesson,  ['files'=>true, 'url' => 'lessons']) !!}
             @csrf 
    
-            @include('lessons.form', ['submitButtonText' => 'Update Lesson'])   
+            @include('lessons.form', ['submitButtonText' => 'Create Lesson'])   
 
             
              

@@ -1,6 +1,6 @@
 <?php
 /**
- * This class is the Controller class
+ * This class is the Additional class
  * 
  * PHP version 7.2
  * 
@@ -10,15 +10,12 @@
  * @license  www.laravel.com Laravel
  * @link     Install this on your machine 
  */
-namespace App\Http\Controllers;
+namespace App;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * This class is the Controller class
+ * This class is the Additonal class
  * 
  * PHP version 7.2
  * 
@@ -28,7 +25,14 @@ use Illuminate\Routing\Controller as BaseController;
  * @license  www.laravel.com Laravel
  * @link     Install this on your machine 
  */
-class Controller extends BaseController
+class Additional extends Model
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    /**
+     * Fillable fields for Additional.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'add_lessons'
+    ];
 }

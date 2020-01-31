@@ -19,15 +19,15 @@ use Illuminate\Support\Str;
 
 $factory->define(Student::class, function (Faker $faker) {
     return [
-        'first_name' => $faker->name,
-        'last_name' => $faker->name,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
         'title' => $faker->title,
         'phone' => $faker->randomDigit,
-        'address' => $faker->text,
-        'notes' => $faker->text,
-        'faculty' => $faker->text,
-        'attendance' => $faker->boolean,
-        'add_lessons' => $faker->boolean
+        'address' => $faker->streetAddress,
+        'notes' => $faker->text(10),
+        'faculty' => $faker->company,
+        'attendance' => $faker->boolean(1),
+        'add_lessons' => $faker->boolean(1)
 
     ];
 });

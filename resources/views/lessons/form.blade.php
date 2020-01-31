@@ -8,17 +8,10 @@
 </div><!-- /.form-group -->
 
     <div class="form-group">
-        <label for="title">Body</label>
-            <textarea
-                class="form-control"
-                type="text"
-                name="body" 
-                placeholder="Body" 
-                value="{{$lesson->body}}">
-            </textarea>
-        
-    
-        @error('body')
+        <label for="description">Description</label>
+            <textarea class="form-control" type="text" name="description" placeholder="Description">{{$lesson->description}}</textarea>
+            
+        @error('description')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div><!-- /.form-group -->
@@ -54,13 +47,8 @@
 
     <div class="form-group">
         <label for="evaluation">Evaluation</label>
-        <textarea
-                class="form-control"
-                type="text"
-                name="evaluation" 
-                placeholder="Evaluation" 
-                value="{{$lesson->evaluation}}">
-        </textarea>
+        
+        <textarea class="form-control" type="text" name="evaluation" placeholder="Evaluation">{{$lesson->evaluation}}</textarea>
         
     
         @error('evaluation')
@@ -95,7 +83,7 @@
                 name="students[]"
                 multiple>
             @foreach ($students as $student)
-                <option value="{{ $student->id }}">{{ $student->first_name}}</option>
+                <option value="{{ $student->id }}">{{ $student->last_name}}</option>
             @endforeach    
             
             </select>

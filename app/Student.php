@@ -1,10 +1,31 @@
 <?php
-
+/**
+ * This class is the Student class
+ * 
+ * PHP version 7.2
+ * 
+ * @category Vendor/Project
+ * @package  Vendor/Project
+ * @author   Sehinde Raji <sehinde@outlook.com>
+ * @license  www.laravel.com Laravel
+ * @link     Install this on your machine 
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Lesson;
 
+/**
+ * This class is the Student class
+ * 
+ * PHP version 7.2
+ * 
+ * @category Vendor/Project
+ * @package  Vendor/Project
+ * @author   Sehinde Raji <sehinde@outlook.com>
+ * @license  www.laravel.com Laravel
+ * @link     Install this on your machine 
+ */
 class Student extends Model
 {
 
@@ -23,8 +44,6 @@ class Student extends Model
 
     /**
      *  Students belongs to many lessons
-     *
-     * 
      */
 
     public function lessons()
