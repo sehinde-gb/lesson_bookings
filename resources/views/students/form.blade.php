@@ -88,25 +88,14 @@
 </div><!-- /.form-group -->  
 
 
-<div class="form-group">
-    <label for="add_lessons">Additional Lessons:</label>
-        <input type="text" class="form-control" name="add_lessons" placeholder="Additional Lessons" value="{{$student->add_lessons}}">
-
-    @error('attendance')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div><!-- /.form-group -->          
 
 
-<div class="form-group">
-    <checkbox></checkbox>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<label><input type="checkbox" class="my_features" data-name="div1"> Assign Your Lesson</label>
 
-</div>
-
-<div class="form-group">
-        <label for="activity">Lessons</label>
-
-       
+<div id="div1" class="toggleDiv">
+    <div class="form-group">
+        <label for="activity">Lessons</label>       
             <select
                 class="form-control"
                 name="lessons[]"
@@ -120,10 +109,16 @@
             @error('lessons')
                 <p class="alert is-danger">{{ $message }}</p>    
             @enderror    
-        
-          
-    
-    </div><!-- /.form-group -->  
+    </div><!-- /.form-group -->  </div>
+
+
+<script>$(function() {
+  $('.my_features').on("change",function() { 
+    $('#'+$(this).attr('data-name')).toggle(this.checked); // toggle instead
+  }).change(); // trigger the change
+});</script>
+
+
        
         
 

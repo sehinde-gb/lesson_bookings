@@ -32,7 +32,6 @@ class StudentsRequest extends FormRequest
             'notes' => 'required',
             'faculty' => 'required',
             'attendance' => 'required',
-            'add_lessons' => 'required',
             'lessons' => 'exists:lessons,id'
         ];
     }

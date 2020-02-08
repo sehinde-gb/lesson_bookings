@@ -12,6 +12,6 @@ class LessonsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Lesson::class, 20)->create();
+        factory(Lesson::class, 5)->create();
     }
 }

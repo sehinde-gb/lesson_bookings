@@ -29,7 +29,7 @@ use App\Lesson;
 class Student extends Model
 {
 
-    protected $fillable = ['first_name', 'last_name', 'title', 'phone', 'address', 'notes', 'faculty', 'attendance', 'add_lessons'];
+    protected $fillable = ['first_name', 'last_name', 'title', 'phone', 'address', 'notes', 'faculty', 'attendance'];
 
     
     /**

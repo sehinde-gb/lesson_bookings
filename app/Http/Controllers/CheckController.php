@@ -13,7 +13,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Check;
 /**
  * This class is the AdditonalController class
  * 
@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
  * @license  www.laravel.com Laravel
  * @link     Install this on your machine 
  */
-class AdditionalController extends Controller
+class CheckController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -36,13 +36,15 @@ class AdditionalController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
 
-        $additional = new Additional;
-        $items = implode(',', $request->get('add_lessons'));
-        $additional->add_lessons = $items;
+        $check = new Check();
+        //dd($request->get('check_items'));
+      
+        $items = implode(',', $request->get('check_items'));
+        $check->check_items = $items;
 
-        $additional->save();
+        $check->save();
 
         return response()->json('Your values has been saved');
 

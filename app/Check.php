@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @license  www.laravel.com Laravel
  * @link     Install this on your machine 
  */
-class Additional extends Model
+class Check extends Model
 {
     /**
      * Fillable fields for Additional.
@@ -33,6 +33,6 @@ class Additional extends Model
      * @var array
      */
     protected $fillable = [
-        'add_lessons'
+        'check_items'
     ];
 }

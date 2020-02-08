@@ -41,7 +41,7 @@
         <td>{{$student['notes']}}</td>
         <td>{{$student['faculty']}}</td>
         <td>{{$student['attendance']}}</td>
-        <td>{{$student['add_lessons']}}</td>
+        
         <td><a href="{{action('StudentsController@edit', $student['id'])}}" class="btn btn-warning">Edit</a></td>
         <td>
           <form action="{{action('StudentsController@destroy', $student['id'])}}" method="post">

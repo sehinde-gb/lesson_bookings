@@ -26,8 +26,8 @@ $factory->define(Student::class, function (Faker $faker) {
         'address' => $faker->streetAddress,
         'notes' => $faker->text(10),
         'faculty' => $faker->company,
-        'attendance' => $faker->boolean(1),
-        'add_lessons' => $faker->boolean(1)
+        'attendance' => $faker->boolean(1)
+        
 
     ];
 });

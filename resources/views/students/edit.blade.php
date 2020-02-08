@@ -14,8 +14,8 @@
                 {{csrf_field()}}
 
                 @include('students.form', ['submitButtonText' => 'Update Student'])
-            {!! Form::close() !!}   
-        </div>
- </div>
+            {!! Form::close() !!} 
+
+            
 
  @endsection   
