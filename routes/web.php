@@ -26,13 +26,18 @@
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get(
+    '/', function () {
+        return view('welcome'); 
+    }
+); 
+//Route::get('/', 'StudentsController@index')->name('home'); 
 Route::resource('students', 'StudentsController');
 Route::resource('lessons', 'LessonsController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'StudentsController@index')->name('home');
+//Static
+Route::get('/bookings', ['as' => 'bookings', 'uses' => 'BookingsController@index']);
+

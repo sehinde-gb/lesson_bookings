@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 //Vue.component('checkbox', require('./components/CheckComponent.vue'));
 Vue.component('lesson-component', require('./components/LessonComponent.vue'));
+Vue.component('calendar-component', require('./components/CalendarComponent.vue'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30,11 +31,12 @@ Vue.component('lesson-component', require('./components/LessonComponent.vue'));
 
 import checkbox from './components/CheckComponent.vue';
 import lesson from './components/LessonComponent.vue';
+import calendar from './components/CalendarComponent.vue';
+
 
 const app = new Vue({
     el: '#app',
-        components: {
-            checkbox
-        }
+        components: 
+        {checkbox,calendar}
 
 });

@@ -177,6 +177,12 @@ class LessonsController extends Controller
         return redirect()->route('lessons.index');
     }
 
+    public function bookings()
+    {
+        return view('lessons.book');
+        
+    }
+
 
     
 }

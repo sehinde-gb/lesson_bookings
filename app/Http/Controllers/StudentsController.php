@@ -58,15 +58,20 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        if (request('lesson')) {
+        //if (request('lesson')) {
 
-            $students = Lesson::where('title', request('lesson'))
-                ->firstOrFail()->students;
+            //$students = Lesson::where('title', request('lesson'))
+              //  ->firstOrFail()->students;
+             
+
         
-        } else {
+        //} else {
 
-              $students = Student::latest()->get();
-        }
+             // $students = Student::latest()->get();
+       // }
+
+        $results = $students->getAddedLessons();
+        dd($results);
 
         return view('students.index', ['students' => $students]);
    
@@ -108,6 +113,7 @@ class StudentsController extends Controller
         
     }
 
+  
     /**
      * Display the student.
      *
@@ -117,8 +123,9 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-
-        return view('students.show')->with(['student' => $student]);
+        
+         
+        //return view('students.show')->with(['student' => $student]);
     }
 
     /**
@@ -151,7 +158,7 @@ class StudentsController extends Controller
     {
     
 
-        $student->update($$request->all()); 
+        $student->update($request->all()); 
 
         $student->lessons()->sync(request('lessons'));
          
@@ -174,7 +181,7 @@ class StudentsController extends Controller
 
     }
 
-  
+
 
 
      /**
@@ -198,30 +205,7 @@ class StudentsController extends Controller
         
     }
 
-    /**
-     * Convert the student collection in to an array.
-     * Filter through the array and pluck out 
-     * any students requiring additional lessons. 
-     *
-     * @param \App\Students $students the student variable
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    protected function getAddedLessons($students) 
-    {
-        $student_array = $students->toArray();
-        //dd($student_array);
-
-        $array = array_filter(
-            $student_array, function ($item) {
-                return $item['add_lessons'] == 0;
-        
-            }
-        );
-
-        dd($array);
-
-    }
+    
 
     /**
      * Filter through the students collection and 
