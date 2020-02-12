@@ -91,9 +91,9 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<label><input type="checkbox" class="my_features" data-name="div1"> Assign Your Lesson</label>
+<label><input type="checkbox" class="my_lessons" data-name="div2"> Assign Your Lesson</label>
 
-<div id="div1" class="toggleDiv">
+<div id="div2" class="toggleDiv">
     <div class="form-group">
         <label for="activity">Lessons</label>       
             <select
@@ -113,7 +113,7 @@
 
 
 <script>$(function() {
-  $('.my_features').on("change",function() { 
+  $('.my_lessons').on("change",function() { 
     $('#'+$(this).attr('data-name')).toggle(this.checked); // toggle instead
   }).change(); // trigger the change
 });</script>

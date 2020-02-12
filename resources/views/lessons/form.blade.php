@@ -75,25 +75,35 @@
         @enderror
     </div><!-- /.form-group -->  
 
-    <div class="form-group">
-        <label for="activity">Students</label>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+       
+    
+    <div id="app" class="form-group">
+        <label><input v-on:click="isChecked = !isChecked" type="checkbox" class="form-control">Students</label>
+            <div v-show="isChecked"></div><!-- /v-show --> 
+                <div v-show="!isChecked">
+                    <div class="form-group">
+                            <select
+                                class="form-control"
+                                name="students[]"
+                                multiple>
+                            @foreach ($students as $student)
+                                <option value="{{ $student->id }}">{{ $student->last_name}}</option>
+                            @endforeach    
+                            
+                            </select>
 
-            <select
-                class="form-control"
-                name="students[]"
-                multiple>
-            @foreach ($students as $student)
-                <option value="{{ $student->id }}">{{ $student->last_name}}</option>
-            @endforeach    
-            
-            </select>
+                            @error('students')
+                                <p class="alert is-danger">{{ $message }}</p>    
+                            @enderror    
+                    </div><!-- /.form-group -->  
+                </div><!-- /v-show -->    
+        </div><!-- #app -->
+           
+        <br>
 
-            @error('students')
-                <p class="alert is-danger">{{ $message }}</p>    
-            @enderror    
-        
-    </div><!-- /.form-group -->  
 
+    
     <!-- button-centre -->
     <div class="button-centre">
         {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary', 'data-confirm' => 'Are you sure about that?']) !!}

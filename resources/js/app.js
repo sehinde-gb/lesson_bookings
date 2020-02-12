@@ -41,8 +41,14 @@ const app = new Vue({
     el: '#app',
         components: 
         {
-            student, check, lesson, calendar
+            student, check, lesson, calendar  
+        },
+        data: function() {
             
+            return {
+            isChecked: true
+            }
         }
+
 
 });

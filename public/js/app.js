@@ -64154,6 +64154,11 @@ var app = new Vue({
     check: _components_Check_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     lesson: _components_Lesson_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     calendar: _components_Calendar_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      isChecked: true
+    };
   }
 });
 
