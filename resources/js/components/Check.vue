@@ -41,7 +41,7 @@
             let obj = {
             check_items: this.add_lessons
             }
-            axios.post('/api/additional', obj)
+            axios.post('/api/checks', obj)
                 .then(res => console.log(res.data));
         }
         }

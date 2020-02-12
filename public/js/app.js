@@ -15166,7 +15166,7 @@ __webpack_require__.r(__webpack_exports__);
       var obj = {
         check_items: this.add_lessons
       };
-      axios.post('/api/additional', obj).then(function (res) {
+      axios.post('/api/checks', obj).then(function (res) {
         return console.log(res.data);
       });
     }

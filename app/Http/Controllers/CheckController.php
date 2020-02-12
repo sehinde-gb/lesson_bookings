@@ -36,7 +36,7 @@ class CheckController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
 
         $check = new Check();
         //dd($request->get('check_items'));

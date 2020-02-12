@@ -34,7 +34,7 @@
         <br>
     <example-component :student="{{ json_encode($student)}}"></example-component>
         <br>
-    <lesson></lesson>
+    <check></check>
         <br>
     <calendar></calendar>
 
