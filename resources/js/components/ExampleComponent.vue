@@ -1,60 +1,40 @@
 
 <template>
-  <div id="app" class="container">
-    <h2>Vue Multiple Checkbox Example</h2>
-    <form @submit.prevent="send()">
-      <div class="form-group">
-        <div class="form-check">
-            <input type="checkbox" id="checkbox" v-model="checked">
-              <label for="checkbox">{{ checked }}</label>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Example Component</div>
+                    <p v-show="isNinja">Invisible like a ninja!</p>
+                    <p v-show="!isNinja">Here I am!</p>
+  
+                    <button v-on:click="isNinja = !isNinja">Toggle Ninja Skills</button>
+                    <h5>Example: {{ student.first_name }}</h5>
+                    <div class="card-body">
+                        I'm an example component.
+                    </div>
+
+                    
+                </div>
+            </div>
         </div>
-
-      <br>
-    </div> 
-
-    <div class="form-group">
-      <button class="btn btn-info">Submit</button>
-
     </div>
-    </form>       
-
-    
-  </div>
 </template>
 
 <script>
-
-
-export default {
- 
-
-  data() {
-    return {
-      checkbox: []
-    }
-  },
-  methods: {
-      send() {
+    export default {
+        data: function() {
+            return {
+            isNinja: true
+            }
+        },
+        props: [
+          'student'
+        ],
+        mounted() {
+            //console.log('Component mounted.');
+            console.log(this.student);
+        },
         
-
-        let obj = {
-          check_items: this.checkbox
-        }
-        axios.post('/api/checks', obj)
-            .then(res => console.log(res.data));
-      }
     }
-
-}
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

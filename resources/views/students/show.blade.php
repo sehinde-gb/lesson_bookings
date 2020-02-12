@@ -29,7 +29,16 @@
 
 <div id="app">
   
-  <example-component></example-component>
+  
+    <student :student="{{ json_encode($student)}}"></student>
+        <br>
+    <example-component :student="{{ json_encode($student)}}"></example-component>
+        <br>
+    <lesson></lesson>
+        <br>
+    <calendar></calendar>
+
+    
 </div>
 
 

@@ -20,23 +20,29 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-//Vue.component('checkbox', require('./components/CheckComponent.vue'));
-Vue.component('lesson-component', require('./components/LessonComponent.vue'));
-Vue.component('calendar-component', require('./components/CalendarComponent.vue'));
+Vue.component('checkbox', require('./components/Check.vue'));
+Vue.component('lesson', require('./components/Lesson.vue'));
+Vue.component('calendar', require('./components/Calendar.vue'));
+Vue.component('student', require('./components/Student.vue'));
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import checkbox from './components/CheckComponent.vue';
-import lesson from './components/LessonComponent.vue';
-import calendar from './components/CalendarComponent.vue';
+import check from './components/Check.vue';
+import lesson from './components/Lesson.vue';
+import calendar from './components/Calendar.vue';
+import student from './components/Student.vue';
 
 
 const app = new Vue({
     el: '#app',
         components: 
-        {checkbox,calendar}
+        {
+            student, check, lesson, calendar
+            
+        }
 
 });

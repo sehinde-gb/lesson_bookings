@@ -51,28 +51,5 @@ class Student extends Model
         return $this->belongsToMany(Lesson::class)->withTimestamps();
     }
 
-    /**
-     * Convert the student collection in to an array.
-     * Filter through the array and pluck out 
-     * any students requiring additional lessons. 
-     *
-     * @param \App\Students $students the student variable
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function getAddedLessons($students) 
-    {
-        $student_array = $students->toArray();
-        //dd($student_array);
-
-        $array = array_filter(
-            $student_array, function ($item) {
-                return $item['add_lessons'] == 0;
-        
-            }
-        );
-
-        dd($array);
-
-    }
+    
 }
