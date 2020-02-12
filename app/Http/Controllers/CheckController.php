@@ -45,7 +45,7 @@ class CheckController extends Controller
         $check->check_items = $items;
 
         
-        dd($check->save());
+        $check->save();
 
         return response()->json('Your values has been saved');
 

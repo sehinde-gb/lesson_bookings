@@ -15152,16 +15152,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      add_lessons: []
+      checkedSubjects: []
     };
   },
   methods: {
     send: function send() {
+      //console.log(this.checkedSubjects.toString());
       var obj = {
-        check_items: this.add_lessons
+        check_items: this.checkedSubjects
       };
       axios.post('/api/checks', obj).then(function (res) {
         return console.log(res.data);
@@ -51603,7 +51626,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "app" } }, [
-    _c("h2", [_vm._v("Additional Lessons")]),
+    _c("h2", [_vm._v("Subjects")]),
     _vm._v(" "),
     _c(
       "form",
@@ -51620,50 +51643,151 @@ var render = function() {
           _c("div", { staticClass: "form-check" }, [
             _c(
               "label",
-              {
-                staticClass: "form-check-label",
-                attrs: { for: "add_lessons" }
-              },
+              { staticClass: "form-check-label", attrs: { for: "law" } },
               [
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.add_lessons,
-                      expression: "add_lessons"
+                      value: _vm.checkedSubjects,
+                      expression: "checkedSubjects"
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", id: "add_lessons", value: "" },
+                  attrs: { type: "checkbox", id: "law", value: "law" },
                   domProps: {
-                    checked: Array.isArray(_vm.add_lessons)
-                      ? _vm._i(_vm.add_lessons, "") > -1
-                      : _vm.add_lessons
+                    checked: Array.isArray(_vm.checkedSubjects)
+                      ? _vm._i(_vm.checkedSubjects, "law") > -1
+                      : _vm.checkedSubjects
                   },
                   on: {
                     change: function($event) {
-                      var $$a = _vm.add_lessons,
+                      var $$a = _vm.checkedSubjects,
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "",
+                        var $$v = "law",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
-                          $$i < 0 && (_vm.add_lessons = $$a.concat([$$v]))
+                          $$i < 0 && (_vm.checkedSubjects = $$a.concat([$$v]))
                         } else {
                           $$i > -1 &&
-                            (_vm.add_lessons = $$a
+                            (_vm.checkedSubjects = $$a
                               .slice(0, $$i)
                               .concat($$a.slice($$i + 1)))
                         }
                       } else {
-                        _vm.add_lessons = $$c
+                        _vm.checkedSubjects = $$c
                       }
                     }
                   }
                 }),
-                _vm._v("\n                  Joe\n        ")
+                _vm._v("\n                  Law\n        ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check" }, [
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "chemistry" } },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedSubjects,
+                      expression: "checkedSubjects"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: {
+                    type: "checkbox",
+                    id: "chemistry",
+                    value: "chemistry"
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedSubjects)
+                      ? _vm._i(_vm.checkedSubjects, "chemistry") > -1
+                      : _vm.checkedSubjects
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedSubjects,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "chemistry",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.checkedSubjects = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedSubjects = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedSubjects = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v("\n                  Chemistry \n        ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check" }, [
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "Woodwork" } },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedSubjects,
+                      expression: "checkedSubjects"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: {
+                    type: "checkbox",
+                    id: "woodwork",
+                    value: "woodwork"
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedSubjects)
+                      ? _vm._i(_vm.checkedSubjects, "woodwork") > -1
+                      : _vm.checkedSubjects
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedSubjects,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "woodwork",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.checkedSubjects = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedSubjects = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedSubjects = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v("\n                 Woodwork\n        ")
               ]
             )
           ])
