@@ -44,7 +44,8 @@ class CheckController extends Controller
         $items = implode(',', $request->get('check_items'));
         $check->check_items = $items;
 
-        $check->save();
+        
+        dd($check->save());
 
         return response()->json('Your values has been saved');
 

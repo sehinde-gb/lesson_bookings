@@ -14,13 +14,10 @@
           </label> 
         </div><!-- /.form-check -->
        </div><!-- /.form-group --> 
-    <div class="form-group">
-      <button class="btn btn-info">Submit</button>
-
-    </div><!-- /.form-group -->
+      <div class="form-group">
+          <button class="btn btn-info">Submit</button>
+      </div><!-- /.form-group -->
     </form>       
-
-    
   </div><!-- /#app -->
 </template>
 
@@ -28,21 +25,20 @@
 <script>
     export default {
     
-
-    data() {
-        return {
-        add_lessons: []
-        }
-    },
-    methods: {
-        send() {
-            let obj = {
-            check_items: this.add_lessons
-            }
-            axios.post('/api/checks', obj)
-                .then(res => console.log(res.data));
-        }
-        }
+      data() {
+          return {
+          add_lessons: []
+          }
+      },
+      methods: {
+          send() {
+              let obj = {
+              check_items: this.add_lessons
+              }
+              axios.post('/api/checks', obj)
+                  .then(res => console.log(res.data));
+          }
+      }
 
     }
 </script>
