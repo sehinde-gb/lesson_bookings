@@ -36,8 +36,6 @@
     },
     methods: {
         send() {
-            
-
             let obj = {
             check_items: this.add_lessons
             }
