@@ -75,7 +75,7 @@ class StudentsController extends Controller
               //$min = $students->where('phone', $students->min('phone'))->first();
               //dd($min);
 
-              //$this->getAddedLessons($students);
+              $this->getAddedLessons($students);
         }   
 
         
@@ -236,6 +236,11 @@ class StudentsController extends Controller
         dd($array);
 
     }
+
+
+    
+
+        
 
     
 

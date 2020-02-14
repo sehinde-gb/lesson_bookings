@@ -27,6 +27,7 @@
         "@fullcalendar/core": "^4.3.1",
         "@fullcalendar/daygrid": "^4.3.0",
         "@fullcalendar/interaction": "^4.3.0",
-        "@fullcalendar/vue": "^4.3.1"
+        "@fullcalendar/vue": "^4.3.1",
+        "tailwindcss": "^1.2.0"
     }
 }
