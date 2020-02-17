@@ -37,7 +37,10 @@ Route::resource('lessons', 'LessonsController');
 
 Auth::routes();
 
-Route::get('/home', 'StudentsController@index')->name('home');
+Route::get('/comp', 'PagesController@index')->name('comp');
+
+Route::get('/home', 'PagesController@index')->name('home');
+
 //Static
 Route::get('/bookings', ['as' => 'bookings', 'uses' => 'BookingsController@index']);
 

@@ -2,23 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use Illuminate\Http\Request;
+use App\Student;
 
-class HomeController extends Controller
+class PagesController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(Student $student)
-    {
-        $this->middleware('auth');
-        $this->student = $student;
-    }
-
-     /**
      * Student variable
      * 
      * @var Student
@@ -26,7 +15,17 @@ class HomeController extends Controller
 
     public $student;
 
-    
+    /**
+     * Pages Controller constructor.
+     *
+     * @param Student $student this is the student variable
+     */
+    public function __construct(Student $student)
+    {
+        $this->student = $student;
+    }
+
+
     /**
      * Show the application dashboard.
      *
@@ -34,6 +33,9 @@ class HomeController extends Controller
      */
     public function index(Student $student)
     {
-        return view('home');
+        return view('pages.index');
     }
+
+
+
 }

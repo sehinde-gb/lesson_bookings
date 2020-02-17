@@ -16,8 +16,10 @@
 
                     You are logged in, {{ Auth::user()->name }}
                 </div>
+
+               
             </div>
         </div>
-    </div>
+        
 </div>
 @endsection

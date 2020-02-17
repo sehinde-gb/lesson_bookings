@@ -25,26 +25,7 @@
     @endforeach    
 </p>
 
-<div id="app">
-  
-  
-    <!-- <student :student="{{ json_encode($student)}}"></student> -->
-       
-    
-    <!-- <check></check> -->
-       
-    <!-- <modal></modal> -->
-    
 
-    <modal v-if="showModal" @close="showModal = false">
-    <!--
-      you can use custom content here to overwrite
-      default content
-    -->
-    <h3 slot="header">custom header</h3>
-  </modal>
-    
-</div>
 
 
 
