@@ -4,9 +4,9 @@ This project uses Laravel 6
 
 Installation
 
-git clone https://github.com/sehinde-gb/lessons_bookings.git
+git clone https://github.com/sehinde-gb/masterbladeuni.git
 
-cd lesson_bookings
+cd masterbladeuni
 
 Run composer install to ensure that Laravel knows what packages to use.
 
@@ -23,7 +23,7 @@ php artisan migrate --seed to create and populate tables
 Check to see if your tables have migrated successfully using your sql software application
 
 Within our example we are using the Laravel Valet environment and we would suggest that you browse to 
-http://lesson_bookings.test/
+http://masterbladeuni.test/
 
 
 
