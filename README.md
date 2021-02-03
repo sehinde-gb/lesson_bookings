@@ -1,4 +1,4 @@
-Laravel 6 
+
 
 This project uses Laravel 8
 
